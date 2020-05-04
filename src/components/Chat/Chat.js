@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
+import PropTypes from 'prop-types';
 
 import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
@@ -21,33 +22,39 @@ const Chat = ({ location }) => {
   const ENDPOINT = 'https://team13server.herokuapp.com/';
 
   useEffect(() => {
-    const { name, room } = queryString.parse(
-      location.search
-    );
+    const {
+      name: inputName,
+      room: inputRoom,
+    } = queryString.parse(location.search);
 
     socket = io(ENDPOINT);
 
-    setRoom(room);
-    setName(name);
+    setRoom(inputRoom);
+    setName(inputName);
 
-    socket.emit('join', { name, room }, (error) => {
-      if (error) {
-        alert(error);
+    socket.emit(
+      'join',
+      { name: inputName, room: inputRoom },
+      error => {
+        if (error) {
+          console.error();
+        }
       }
-    });
+    );
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages((messages) => [...messages, message]);
+    socket.on('message', msg => {
+      // eslint-disable-next-line no-shadow
+      setMessages(messages => [...messages, msg]);
     });
 
-    socket.on('roomData', ({ users }) => {
-      setUsers(users);
+    socket.on('roomData', ({ users: roomUsers }) => {
+      setUsers(roomUsers);
     });
   }, []);
 
-  const sendMessage = (event) => {
+  const sendMessage = event => {
     event.preventDefault();
 
     if (message) {
@@ -71,6 +78,12 @@ const Chat = ({ location }) => {
       <TextContainer users={users} />
     </div>
   );
+};
+
+Chat.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }).isRequired,
 };
 
 export default Chat;

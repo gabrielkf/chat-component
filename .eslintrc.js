@@ -13,6 +13,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -20,7 +21,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'react'],
+  plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 2,
     'react/jsx-filename-extension': [
@@ -34,5 +35,8 @@ module.exports = {
     'no-param-reassign': 0,
     'no-console': 0,
     'jsx-a11y/control-has-associated-label': 0,
+    'react/prefer-stateless-function': 0,
+    'react/prop-types': 1,
+    'react/no-array-index-key': 0,
   },
 };
