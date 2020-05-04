@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Input.css';
 
@@ -7,7 +8,7 @@ const Input = ({ setMessage, sendMessage, message }) => (
     <input
       className="input"
       type="text"
-      placeholder="Type a message..."
+      placeholder=""
       value={message}
       onChange={({ target: { value } }) =>
         setMessage(value)
@@ -17,13 +18,19 @@ const Input = ({ setMessage, sendMessage, message }) => (
       }
     />
     <button
-      type="button"
+      type="submit"
       className="sendButton"
       onClick={e => sendMessage(e)}
     >
-      Send
+      Enviar
     </button>
   </form>
 );
+
+Input.propTypes = {
+  setMessage: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+};
 
 export default Input;

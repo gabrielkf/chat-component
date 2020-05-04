@@ -38,5 +38,6 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'react/prop-types': 1,
     'react/no-array-index-key': 0,
+    'no-shadow': 0,
   },
 };

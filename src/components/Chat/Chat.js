@@ -3,7 +3,6 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 
-import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
@@ -15,7 +14,6 @@ let socket;
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-  const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 
@@ -45,12 +43,7 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     socket.on('message', msg => {
-      // eslint-disable-next-line no-shadow
       setMessages(messages => [...messages, msg]);
-    });
-
-    socket.on('roomData', ({ users: roomUsers }) => {
-      setUsers(roomUsers);
     });
   }, []);
 
@@ -75,7 +68,6 @@ const Chat = ({ location }) => {
           sendMessage={sendMessage}
         />
       </div>
-      <TextContainer users={users} />
     </div>
   );
 };

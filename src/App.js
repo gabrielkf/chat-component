@@ -5,13 +5,15 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Dashboard from './pages/Dashboard/Dashboard';
+import ClientHome from './pages/ClientHome/ClientHome';
+import SellerHome from './pages/SellerHome/SellerHome';
 import Join from './components/Join/Join';
 import Chat from './components/Chat/Chat';
 
 const App = () => (
   <Router>
-    <Route path="/" exact component={Dashboard} />
+    <Route path="/" exact component={ClientHome} />
+    <Route path="/seller" exact component={SellerHome} />
     <Route path="/join" component={Join} />
     <Route path="/chat" component={Chat} />
   </Router>

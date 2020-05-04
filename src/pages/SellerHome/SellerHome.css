@@ -3,15 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1a1a1d;
+  background-color: #1A1A1D;
 }
 
-.container {
+.innerContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
-  background: #ffffff;
+  background: #FFFFFF;
   border-radius: 8px;
   height: 60%;
   width: 35%;
