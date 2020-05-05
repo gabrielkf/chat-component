@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { MdFace } from 'react-icons/md';
 
 import api from '../../services/apiCall';
-import './ClientHome.css';
+
+import { Container, SellersList } from './styles';
 
 class ClientHome extends Component {
   state = {
@@ -54,21 +55,25 @@ class ClientHome extends Component {
     const { sellers, clients, sessionClient } = this.state;
 
     return (
-      <div className="container">
-        <select
-          value={sessionClient}
-          onChange={this.handleChangeUser}
-        >
-          {clients.map(client => (
-            <option
-              key={client.id}
-              value={client.firstName}
-            >
-              {client.name}
-            </option>
-          ))}
-        </select>
-        <ul>
+      <Container>
+        <div>
+          <strong>Cliente para teste</strong>
+          <select
+            value={sessionClient}
+            onChange={this.handleChangeUser}
+          >
+            {clients.map(client => (
+              <option
+                key={client.id}
+                value={client.firstName}
+              >
+                {client.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <SellersList>
           {sellers.map(seller => (
             <li key={seller.id}>
               <div className="head">
@@ -80,9 +85,12 @@ class ClientHome extends Component {
               </div>
 
               <Link
-                to={`/chat?name=${sessionClient}&room=${seller.firstName}`}
+                to={`/chat/client?name=${sessionClient}&room=${seller.firstName}`}
               >
-                <button type="submit">
+                <button
+                  type="submit"
+                  onClick={this.openNewTab}
+                >
                   <div>
                     <MdFace size={20} />
                   </div>
@@ -91,8 +99,8 @@ class ClientHome extends Component {
               </Link>
             </li>
           ))}
-        </ul>
-      </div>
+        </SellersList>
+      </Container>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
@@ -58,7 +59,7 @@ const Chat = ({ location }) => {
   };
 
   return (
-    <div className="outerContainer">
+    <div id="chat-box" className="outerContainer">
       <div className="container">
         <InfoBar room={room} />
         <Messages messages={messages} name={name} />
@@ -68,6 +69,16 @@ const Chat = ({ location }) => {
           sendMessage={sendMessage}
         />
       </div>
+
+      <Link
+        className="link"
+        to={`/chat/seller?name=${room}&room=${room}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        color="#eee"
+      >
+        Ver o chat do comprador
+      </Link>
     </div>
   );
 };

@@ -1,3 +1,15 @@
+#chat-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.link {
+  text-decoration: none;
+  color: #eee;
+  font-size: 20px;
+}
+
 .outerContainer {
   display: flex;
   justify-content: center;
