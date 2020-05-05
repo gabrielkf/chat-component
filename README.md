@@ -1,4 +1,4 @@
-# Real Time chat application
+# Team 13 chat app - MegaHack Vtex challenge
 
 Made using socket.io and React. The server is hosted
 on [Heroku](https://team13server.herokuapp.com/)

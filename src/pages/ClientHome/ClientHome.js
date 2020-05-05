@@ -37,8 +37,8 @@ class ClientHome extends Component {
     );
 
     this.setState({
-      sellers: clientsWithFirstName,
-      clients: sellersWithFirstName,
+      sellers: sellersWithFirstName,
+      clients: clientsWithFirstName,
       sessionClient: clientsWithFirstName[0].firstName,
     });
   }
